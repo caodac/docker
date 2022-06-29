@@ -5,7 +5,7 @@
 #   docker build --build-arg VERSION=2016v2 -t ncats/metamap .
 # change VERSION to reflect your downloaded version
 FROM ubuntu:latest
-ARG VERSION=2016v2
+ARG VERSION=2020
 ARG MM=public_mm_linux_main_$VERSION.tar.bz2
 ARG API=public_mm_linux_javaapi_$VERSION.tar.bz2
 ARG INSTALL=/metamap

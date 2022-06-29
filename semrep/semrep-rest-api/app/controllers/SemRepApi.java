@@ -24,6 +24,10 @@ public class SemRepApi extends Controller {
             });
     }
 
+    static final String[] ENV = {
+	"LD_LIBRARY_PATH=/metamap/public_semrep/bin:/metamap/public_semrep/lib"
+    };
+
     @Inject
     public SemRepApi (HttpExecutionContext ec, Config conf) {
         this.ec = ec;
@@ -58,13 +62,13 @@ public class SemRepApi extends Controller {
         args.add(temp.toString());
 
         long start = System.currentTimeMillis();
-        Process proc = Runtime.getRuntime().exec(args.toArray(new String[0]));
+        Process proc = Runtime.getRuntime().exec(args.toArray(new String[0]), ENV);
         int status = proc.waitFor();
         double elapsed = (System.currentTimeMillis() - start)/1000.;        
         Logger.debug("SemRep[size="+size+",status="+status+" in "
                      +String.format("%1$.3fs", elapsed)+" -- "+args);
         if (0 == status) {
-            File out = new File (work, temp.getFileName()+".sem.v1.7");
+            File out = new File (work, temp.getFileName()+".sem.v1.8");
             if (out.exists())
                 return ok(out).as("application/xml");
         }
