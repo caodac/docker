@@ -1,0 +1,4 @@
+CREATE SCHEMA umls;
+CREATE SCHEMA tcrd;
+CREATE SCHEMA semmed;
+CREATE SCHEMA chembl;

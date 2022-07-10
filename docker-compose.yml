@@ -1,0 +1,32 @@
+version: "2"
+
+services:
+  metamap:
+    build: ./metamap
+    image: ncats/metamap
+    ports:
+      - 18066:18066
+
+  semrep:
+    build: ./semrep
+    image: ncats/semrep
+    environment:
+      - ACCEPTED_HOSTS="['127.0.0.1','172.17.0.1']"
+    ports:
+      - 8066:8066
+      - 8067:8067
+
+  blackboard:
+    image: ncats/blackboard
+    build: ./blackboard
+    ports:
+      - 9000:9000
+    
+  mysql:
+    image: ncats/mysql
+    build: ./mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD="1"
+      - MYSQL_USER="root"
+    # ports:
+    #   - 3306:3306
